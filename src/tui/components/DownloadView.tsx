@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Text } from 'ink';
-import type { DownloadStats } from '../../download';
+import type { DownloadStats } from '../../download.js';
 
 interface DownloadViewProps {
   width: number;

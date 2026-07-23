@@ -4,7 +4,7 @@
   "description": "CATCH — snag source from any Vercel deployment",
   "type": "module",
   "bin": {
-    "vercel-deploy-source-downloader": "./dist/tui/cli.js"
+    "catch": "./dist/tui/cli.js"
   },
   "scripts": {
     "dev": "tsx src/tui/cli.tsx",
@@ -20,13 +20,14 @@
     "backup",
     "cli",
     "tui",
-    "ink"
+    "ink",
+    "terminal"
   ],
-  "author": "Numan <ahmetnuman95@hotmail.com>",
+  "author": "Dimitris Vatistas",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/numanaral/vercel-deploy-source-downloader.git"
+    "url": "git+https://github.com/vatistasdimitris01/catch-vercel.git"
   },
   "dependencies": {
     "ink": "^5.1.0",

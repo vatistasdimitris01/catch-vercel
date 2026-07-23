@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Box, Text, useInput, useApp } from 'ink';
-import { Logo } from './components/Logo';
-import { InputField } from './components/InputField';
-import { DownloadView } from './components/DownloadView';
-import { runDownload, type DownloadStats } from '../download';
+import { Logo } from './components/Logo.js';
+import { InputField } from './components/InputField.js';
+import { DownloadView } from './components/DownloadView.js';
+import { runDownload, type DownloadStats } from '../download.js';
 import { join } from 'path';
 
 type AppStatus = 'input' | 'downloading' | 'complete' | 'error';
