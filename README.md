@@ -14,14 +14,19 @@ A beautiful terminal UI for downloading source code from any Vercel deployment. 
 
 ## Install
 
-### Global (recommended)
+### Option 1: Install from GitHub
 
 ```bash
-npm install -g catch-vercel
+git clone https://github.com/vatistasdimitris01/catch-vercel.git
+cd catch-vercel
+npm install
+npm link
 catch
 ```
 
-### Local
+After `npm link`, type `catch` anywhere in your terminal and the TUI opens.
+
+### Option 2: Run without installing
 
 ```bash
 git clone https://github.com/vatistasdimitris01/catch-vercel.git
