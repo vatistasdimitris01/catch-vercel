@@ -259,9 +259,8 @@ export default function App() {
       return;
     }
 
-    // backspace
-    const isBackspace = key.backspace || input === '\x7f' || input === '\x08';
-    if (isBackspace) {
+    // backspace — cover all terminal variants
+    if (key.backspace || input === '\x7f' || input === '\x08' || input === '\b') {
       if (cursor > 0) {
         setValue(value.slice(0, cursor - 1) + value.slice(cursor));
         setCursor(cursor - 1);

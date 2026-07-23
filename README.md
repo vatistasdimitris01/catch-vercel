@@ -73,9 +73,7 @@ If a field is empty when you hit Enter, CATCH shows a red error and moves focus 
 Once you hit Enter, CATCH shows a live progress screen:
 
 ```
-═══════════════════════════════════════════════════
   catching source files
-═══════════════════════════════════════════════════
 
   ⠹ fetching file tree...
 
@@ -99,30 +97,20 @@ Once you hit Enter, CATCH shows a live progress screen:
 When all files are done:
 
 ```
-═══════════════════════════════════════════════════
-  all files caught
-═══════════════════════════════════════════════════
+  ░██████     ░███    ░██████████  ░██████  ░██     ░██
+ ░██   ░██   ░██░██       ░██     ░██   ░██ ░██     ░██
+░██         ░██  ░██      ░██    ░██        ░██     ░██
+░██        ░█████████     ░██    ░██        ░██████████
+░██        ░██    ░██     ░██    ░██        ░██     ░██
+ ░██   ░██ ░██    ░██     ░██     ░██   ░██ ░██     ░██
+  ░██████  ░██    ░██     ░██      ░██████  ░██     ░██
 
-  deployment  dpl_aBcxxxxxxxxxxxxxxxxxxxxyZa
   project     my-project
   output      /path/to/out
 
-  files       318
   caught      270
   skipped      48
   size        5.79 MB
-
-  file types:
-    tsx            42 files
-    ts             38 files
-    json           12 files
-    css             8 files
-
-  tree:
-    📁 src
-      📄 App.tsx
-      📄 index.ts
-    📄 package.json
 
   press esc or ^c to exit
 ```
@@ -150,6 +138,14 @@ Re-running the same deployment skips files already downloaded.
 ## Requirements
 
 - Node.js >= 18.0.0
+
+## Updating
+
+```bash
+catch update
+```
+
+Checks npm for the latest version and installs it globally.
 
 ## License
 
