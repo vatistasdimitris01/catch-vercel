@@ -344,7 +344,8 @@ export async function runDownload(
       });
     };
 
-    const basePath = outputDir;
+    const basePath = join(outputDir, deploymentId);
+    mkdirSync(basePath, { recursive: true });
     let totalDiscovered = 0;
 
     const countNodes = (nodes: FileNode[]): number => {

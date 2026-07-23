@@ -88,7 +88,7 @@ export default function App() {
     setStatus('downloading');
     abortRef.current = false;
 
-    const outDir = join(process.cwd(), 'out');
+    const outDir = join(process.cwd(), 'catch');
 
     runDownload(t, d, outDir, {
       onStatus: (msg) => setDlStatus(msg),

@@ -23,9 +23,12 @@ npm link
 
 After `npm link`, type `catch` anywhere in your terminal and the TUI opens.
 
-## How to use
+## Commands
 
-Type `catch` in your terminal and you'll see the TUI:
+| Command | Action |
+|---------|--------|
+| `catch` | Open the TUI |
+| `catch update` | Check npm and install latest version |
 
 ```
   ░██████     ░███    ░██████████  ░██████  ░██     ░██
@@ -66,6 +69,7 @@ If a field is empty when you hit Enter, CATCH shows a red error and moves focus 
 | `Enter` | Start download (validates both fields are filled) |
 | `Esc` | Clear current field, or switch if already empty |
 | `←` / `→` | Move cursor within the field |
+| `Backspace` | Delete text |
 | `^c` | Quit |
 
 ## Download screen
@@ -118,10 +122,9 @@ When all files are done:
 ## Output
 
 ```
-out/
+catch/
 └── dpl_xxxxx/
-    ├── source/          # Downloaded source files
-    └── download-log.txt # Full operation log
+    └── (source files)
 ```
 
 Re-running the same deployment skips files already downloaded.
