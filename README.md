@@ -151,14 +151,6 @@ Re-running the same deployment skips files already downloaded.
 
 - Node.js >= 18.0.0
 
-## Credits
-
-This project builds on top of two open-source projects:
-
-- **[vercel-deploy-source-downloader](https://github.com/numanaral/vercel-deploy-source-downloader)** by [Numan Aral](https://numanaral.dev) — the Vercel API integration, file tree traversal, download logic, and caching system. The core `src/download.ts` module is adapted from his work. Licensed under MIT.
-
-- **[STRM](https://github.com/vatistasdimitris01/STRM)** — the Ink-based terminal UI design, floating input field style, logo rendering, cursor animation, and overall TUI architecture. The visual language and component patterns are inspired by STRM. Licensed under MIT.
-
 ## License
 
 MIT
