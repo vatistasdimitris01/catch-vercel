@@ -19,6 +19,16 @@ interface DownloadViewProps {
 const SPINNERS = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
 const ACCENT = '#7f9db5';
 
+const LOGO: string[] = [
+  '  ░██████     ░███    ░██████████  ░██████  ░██     ░██ ',
+  ' ░██   ░██   ░██░██       ░██     ░██   ░██ ░██     ░██ ',
+  '░██         ░██  ░██      ░██    ░██        ░██     ░██ ',
+  '░██        ░█████████     ░██    ░██        ░██████████ ',
+  '░██        ░██    ░██     ░██    ░██        ░██     ░██ ',
+  ' ░██   ░██ ░██    ░██     ░██     ░██   ░██ ░██     ░██ ',
+  '  ░██████  ░██    ░██     ░██      ░██████  ░██     ░██ ',
+];
+
 function formatSize(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
@@ -63,104 +73,50 @@ export function DownloadView({
 
   if (isComplete && stats) {
     const sizeStr = formatSize(stats.totalSize);
-    const topExt = Object.entries(stats.extensions)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 5);
-
-    const maxTreeLines = Math.max(4, height - 20);
-    const visibleTree = stats.treeLines.slice(0, maxTreeLines);
 
     return (
       <Box
         flexDirection="column"
         alignItems="center"
         width={width}
-        paddingTop={1}
+        justifyContent="center"
       >
-        <Box flexDirection="column" alignItems="center" width={innerWidth}>
-          <Text color={ACCENT} bold>
-            {'═'.repeat(innerWidth)}
+        <Box flexDirection="column" alignItems="center">
+          {LOGO.map((line, i) => (
+            <Text key={i} color={ACCENT}>
+              {line}
+            </Text>
+          ))}
+        </Box>
+
+        <Box marginTop={2} flexDirection="column" alignItems="center" width={innerWidth}>
+          <Text color="#a0a0a0">
+            {'  '}project{'     '}
+            <Text color="white">{stats.projectName}</Text>
           </Text>
-          <Box marginTop={0}>
-            <Text color="white" bold>  all files caught</Text>
-          </Box>
-          <Text color={ACCENT} bold>
-            {'═'.repeat(innerWidth)}
+          <Text color="#a0a0a0">
+            {'  '}output{'     '}
+            <Text color="white">{stats.outputDir}</Text>
           </Text>
+          <Box marginTop={1} />
+          <Text color="#a0a0a0">
+            {'  '}caught{'    '}
+            <Text color="#4ec9b0">{stats.downloaded}</Text>
+          </Text>
+          <Text color="#a0a0a0">
+            {'  '}skipped{'    '}
+            <Text color="#dcdcaa">{stats.skipped}</Text>
+          </Text>
+          <Text color="#a0a0a0">
+            {'  '}size{'       '}
+            <Text color="white">{sizeStr}</Text>
+          </Text>
+        </Box>
 
-          <Box marginTop={1} flexDirection="column" width={innerWidth}>
-            <Text color="#a0a0a0">
-              {'  '}deployment{'  '}
-              <Text color="white">{stats.deploymentId}</Text>
-            </Text>
-            <Text color="#a0a0a0">
-              {'  '}project{'     '}
-              <Text color="white">{stats.projectName}</Text>
-            </Text>
-            <Text color="#a0a0a0">
-              {'  '}output{'     '}
-              <Text color="white">{stats.outputDir}</Text>
-            </Text>
-          </Box>
-
-          <Box marginTop={1} flexDirection="column" width={innerWidth}>
-            <Text color={ACCENT}>
-              {'  '}files{'      '}
-              <Text color="white" bold>{stats.totalFiles}</Text>
-            </Text>
-            <Text color="#a0a0a0">
-              {'  '}caught{'    '}
-              <Text color="#4ec9b0">{stats.downloaded}</Text>
-            </Text>
-            <Text color="#a0a0a0">
-              {'  '}skipped{'    '}
-              <Text color="#dcdcaa">{stats.skipped}</Text>
-            </Text>
-            {stats.failed > 0 && (
-              <Text color="#a0a0a0">
-                {'  '}failed{'     '}
-                <Text color="#f44747">{stats.failed}</Text>
-              </Text>
-            )}
-            <Text color="#a0a0a0">
-              {'  '}size{'       '}
-              <Text color="white">{sizeStr}</Text>
-            </Text>
-          </Box>
-
-          {topExt.length > 0 && (
-            <Box marginTop={1} flexDirection="column" width={innerWidth}>
-              <Text color="#707070">{'  '}file types:</Text>
-              {topExt.map(([ext, count]) => (
-                <Text key={ext} color="#707070">
-                  {'    '}{ext.padEnd(12)}
-                  <Text color="#a0a0a0">{String(count).padStart(4)} files</Text>
-                </Text>
-              ))}
-            </Box>
-          )}
-
-          {visibleTree.length > 0 && (
-            <Box marginTop={1} flexDirection="column" width={innerWidth}>
-              <Text color="#707070">{'  '}tree:</Text>
-              {visibleTree.map((line, i) => (
-                <Text key={i} color="#555">
-                  {'    '}{line}
-                </Text>
-              ))}
-              {stats.treeLines.length > maxTreeLines && (
-                <Text color="#555">
-                  {'    '}... and {stats.treeLines.length - maxTreeLines} more
-                </Text>
-              )}
-            </Box>
-          )}
-
-          <Box marginTop={1}>
-            <Text color="#707070">
-              {'  '}press <Text color="white">esc</Text> or <Text color="white">^c</Text> to exit
-            </Text>
-          </Box>
+        <Box marginTop={2}>
+          <Text color="#707070">
+            {'  '}press <Text color="white">esc</Text> or <Text color="white">^c</Text> to exit
+          </Text>
         </Box>
       </Box>
     );
@@ -174,11 +130,9 @@ export function DownloadView({
       justifyContent="center"
     >
       <Box flexDirection="column" alignItems="center" width={innerWidth}>
-        <Text color="#555">{'═'.repeat(innerWidth)}</Text>
         <Box marginTop={0}>
           <Text color="white" bold>  catching source files</Text>
         </Box>
-        <Text color="#555">{'═'.repeat(innerWidth)}</Text>
 
         <Box marginTop={1} flexDirection="column" width={innerWidth}>
           <Text color="#a0a0a0">
