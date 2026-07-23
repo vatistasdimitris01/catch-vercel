@@ -19,24 +19,18 @@ function getLocalVersion(): string {
 }
 
 function runUpdate() {
-  const pkg = 'catch-vercel';
+  const installDir = resolve(__dirname, '../..');
+
   console.log('\x1b[36m  catching update...\x1b[0m\n');
 
   try {
-    console.log(`\x1b[33m  current version: \x1b[0m${getLocalVersion()}`);
-    console.log(`\x1b[33m  checking npm...\x1b[0m\n`);
+    console.log('\x1b[33m  pulling latest...\x1b[0m');
+    execSync('git pull', { cwd: installDir, stdio: 'inherit' });
 
-    const result = execSync(`npm view ${pkg} version`, { encoding: 'utf-8' }).trim();
-    console.log(`\x1b[33m  latest version:  \x1b[0m\x1b[32m${result}\x1b[0m\n`);
+    console.log('\n\x1b[33m  rebuilding...\x1b[0m');
+    execSync('npx tsc', { cwd: installDir, stdio: 'inherit' });
 
-    if (result === getLocalVersion()) {
-      console.log('\x1b[32m  already up to date\x1b[0m\n');
-      process.exit(0);
-    }
-
-    console.log('\x1b[36m  installing...\x1b[0m\n');
-    execSync(`npm install -g ${pkg}@latest`, { stdio: 'inherit' });
-    console.log('\n\x1b[32m  updated\x1b[0m\n');
+    console.log('\n\x1b[32m  ✓ updated\x1b[0m\n');
     process.exit(0);
   } catch (err: any) {
     console.error('\n\x1b[31m  update failed:', err.message || err, '\x1b[0m\n');
